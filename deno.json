@@ -4,6 +4,7 @@
     "dev": "deno task dev:api & deno task dev:web",
     "dev:api": "deno run -A --watch server/main.ts",
     "dev:web": "deno run -A npm:vite@7.1.5",
+    "generate:status": "deno run -A scripts/generate-status.ts",
     "build": "deno run -A npm:vite@7.1.5 build",
     "preview": "deno task build && deno run -A server/main.ts",
     "lint": "deno run -A npm:@biomejs/biome@2.3.8 check .",

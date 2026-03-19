@@ -3,6 +3,7 @@
   "files": {
     "includes": [
       "**",
+      "!.devbox",
       "!dist",
       "!node_modules",
       "!.vite",
