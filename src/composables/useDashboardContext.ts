@@ -9,19 +9,18 @@ import {
   type Ref,
   ref,
 } from 'vue';
-import type {
-  PresentationTone,
-  ServiceStatus,
-  StatusResponse,
-} from '../shared/types.ts';
+import type { PresentationTone, ServiceStatus } from '../shared/types.ts';
 import {
   defaultNotificationRuleSettings,
   type NotificationRuleKey,
   type NotificationRuleSettings,
   shouldNotifyOnTransition,
 } from './dashboard-notifications.ts';
+import {
+  fetchStatusResponse,
+  STATUS_POLL_INTERVAL_MS,
+} from './status-data-fetch.ts';
 
-const POLL_INTERVAL_MS = 30_000;
 const TIME_ZONE_STORAGE_KEY = 'dashboard-time-zone';
 const NOTIFICATION_STORAGE_KEY = 'dashboard-notifications-enabled';
 const NOTIFICATION_RULES_STORAGE_KEY = 'dashboard-notification-rules';
@@ -70,13 +69,10 @@ export function provideDashboardContext() {
     isLoading.value = true;
 
     try {
-      const response = await fetch('/api/status');
-
-      if (!response.ok) {
-        throw new Error(`status ${response.status}`);
-      }
-
-      const nextData = (await response.json()) as StatusResponse;
+      const nextData = await fetchStatusResponse(
+        fetch,
+        import.meta.env.BASE_URL,
+      );
       notifyServiceTransitions(nextData.services);
       data.value = nextData;
       errorMessage.value = '';
@@ -114,7 +110,7 @@ export function provideDashboardContext() {
     void load();
     timerId = window.setInterval(() => {
       void load();
-    }, POLL_INTERVAL_MS);
+    }, STATUS_POLL_INTERVAL_MS);
   });
 
   onUnmounted(() => {
