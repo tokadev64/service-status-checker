@@ -3,7 +3,7 @@ name: Deploy Pages
 on:
   push:
     branches:
-      - develop
+      - main
   workflow_dispatch:
   schedule:
     - cron: '*/5 * * * *'
@@ -44,7 +44,7 @@ jobs:
           path: dist
 
   deploy:
-    if: github.ref == 'refs/heads/develop'
+    if: github.ref == 'refs/heads/main'
     needs: build
     runs-on: ubuntu-latest
     environment:
