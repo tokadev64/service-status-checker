@@ -123,22 +123,22 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <section class="hero">
+  <section class="hero card">
     <div class="hero-row">
       <div class="hero-title-block">
-        <div class="hero-kicker-row">
-          <p class="hero-kicker">STATUS BOARD</p>
+        <div class="hero-title-row">
+          <h1 class="app-title">ServiceStatusChecker</h1>
           <div ref="helpPanelRef" class="hero-help">
             <button
               type="button"
-              class="hero-help-button"
+              class="hero-help-button btn btn-xs btn-ghost btn-circle"
               :class="{ 'is-active': helpPanelOpen }"
               aria-label="Open help"
               @click="helpPanelOpen = !helpPanelOpen"
             >
               <span class="material-symbols-outlined">help</span>
             </button>
-            <div v-if="helpPanelOpen" class="hero-help-menu">
+            <div v-if="helpPanelOpen" class="hero-help-menu card">
               <p class="hero-help-title">{{ helpTitle }}</p>
               <ul class="hero-help-list">
                 <li v-for="item in helpItems" :key="item">{{ item }}</li>
@@ -146,13 +146,12 @@ onUnmounted(() => {
             </div>
           </div>
         </div>
-        <h1 class="app-title">ServiceStatusChecker</h1>
       </div>
       <div class="hero-actions">
         <div ref="notificationPanelRef" class="notification-panel">
           <button
             type="button"
-            class="notification-toggle"
+            class="notification-toggle btn btn-sm"
             :class="{ 'is-active': notificationEnabled }"
             :aria-label="
               notificationEnabled
@@ -181,19 +180,19 @@ onUnmounted(() => {
           </button>
           <button
             type="button"
-            class="notification-config-toggle"
+            class="notification-config-toggle btn btn-sm btn-ghost btn-square"
             :class="{ 'is-active': notificationPanelOpen }"
             aria-label="Open notification settings"
             @click="notificationPanelOpen = !notificationPanelOpen"
           >
             <span class="material-symbols-outlined">tune</span>
           </button>
-          <div v-if="notificationPanelOpen" class="notification-config-menu">
+          <div v-if="notificationPanelOpen" class="notification-config-menu card">
             <div class="notification-rule-group">
               <div class="notification-group-label">
                 <button
                   type="button"
-                  class="notification-group-toggle"
+                  class="notification-group-toggle btn btn-ghost btn-xs btn-square"
                   :aria-pressed="incidentRulesEnabled"
                   @click="toggleIncidentGroup"
                 >
@@ -293,7 +292,7 @@ onUnmounted(() => {
               <div class="notification-group-label">
                 <button
                   type="button"
-                  class="notification-group-toggle"
+                  class="notification-group-toggle btn btn-ghost btn-xs btn-square"
                   :aria-pressed="recoveryRulesEnabled"
                   @click="toggleRecoveryGroup"
                 >
@@ -323,10 +322,10 @@ onUnmounted(() => {
             </label>
           </div>
         </div>
-        <div class="timezone-toggle" aria-label="Timezone switcher">
+        <div class="timezone-toggle join" aria-label="Timezone switcher">
           <button
             type="button"
-            class="timezone-button"
+            class="timezone-button btn btn-sm join-item"
             :class="{ 'is-active': timeZoneMode === 'jst' }"
             aria-label="Show JST (UTC+9)"
             title="JST (UTC+9)"
@@ -336,7 +335,7 @@ onUnmounted(() => {
           </button>
           <button
             type="button"
-            class="timezone-button"
+            class="timezone-button btn btn-sm join-item"
             :class="{ 'is-active': timeZoneMode === 'utc' }"
             aria-label="Show UTC"
             title="UTC"

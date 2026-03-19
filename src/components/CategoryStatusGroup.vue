@@ -11,7 +11,7 @@ defineProps<{
 </script>
 
 <template>
-  <section class="status-group-card category-group-card" data-group-tone="gray">
+  <section class="status-group-card category-group-card card" data-group-tone="gray">
     <div class="status-group-header">
       <span class="status-group-icon material-symbols-outlined">
         {{ iconName }}
