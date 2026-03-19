@@ -4,6 +4,47 @@
 :root {
   color-scheme: light;
   font-family: "Noto Sans JP", "Hiragino Sans", sans-serif;
+  --ui-shadow: 0 6px 16px
+    color-mix(in oklab, var(--color-neutral) 10%, transparent);
+  --ui-shadow-hover: 0 6px 14px
+    color-mix(
+      in oklab,
+      var(--tone-color, var(--color-neutral)) 12%,
+      transparent
+    );
+  --ui-panel-border: color-mix(
+    in oklab,
+    var(--color-base-content) 10%,
+    transparent
+  );
+  --ui-panel-border-soft: color-mix(
+    in oklab,
+    var(--color-base-content) 8%,
+    transparent
+  );
+  --ui-control-border: color-mix(
+    in oklab,
+    var(--color-base-content) 9%,
+    transparent
+  );
+  --ui-panel-bg: color-mix(in oklab, var(--color-base-100) 92%, white);
+  --ui-control-bg: color-mix(in oklab, var(--color-base-100) 96%, white);
+  --ui-card-bg: color-mix(in oklab, var(--color-base-200) 75%, white);
+  --ui-text-muted: color-mix(
+    in oklab,
+    var(--color-base-content) 65%,
+    transparent
+  );
+  --ui-text-soft: color-mix(
+    in oklab,
+    var(--color-base-content) 55%,
+    transparent
+  );
+  --ui-text-faint: color-mix(
+    in oklab,
+    var(--color-base-content) 48%,
+    transparent
+  );
   background:
     radial-gradient(
       circle at top left,
@@ -33,16 +74,15 @@ a {
 }
 
 .page-shell {
-  width: min(1100px, calc(100vw - 32px));
-  margin: 0 auto;
+  width: 100%;
+  margin: 0;
   padding: 0 0 32px;
 }
 
 .hero,
 .board-shell,
 .status-group-card {
-  box-shadow: 0 6px 16px
-    color-mix(in oklab, var(--color-neutral) 10%, transparent);
+  box-shadow: var(--ui-shadow);
 }
 
 .hero {
@@ -52,14 +92,13 @@ a {
   z-index: 30;
   width: 100%;
   padding: 10px 12px;
-  border: 1px solid
-    color-mix(in oklab, var(--color-base-content) 10%, transparent);
-  background: color-mix(in oklab, var(--color-base-100) 92%, white);
+  border-radius: 0;
+  border: 1px solid var(--ui-panel-border);
+  background: var(--ui-panel-bg);
 }
 
 .hero-row {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
+  display: flex;
   align-items: center;
   gap: 12px;
   width: 100%;
@@ -75,7 +114,6 @@ a {
 
 .hero-title-block {
   min-width: 0;
-  justify-self: start;
 }
 
 .hero-title-row,
@@ -90,12 +128,12 @@ a {
 }
 
 .hero-actions {
+  margin-left: auto;
   justify-content: flex-end;
-  justify-self: end;
 }
 
-.hero-help,
-.notification-panel {
+.notification-panel,
+.footer-help {
   position: relative;
 }
 
@@ -106,9 +144,10 @@ a {
   letter-spacing: 0.01em;
 }
 
-.hero-help-button.btn,
 .notification-config-toggle.btn,
-.notification-group-toggle.btn {
+.notification-group-toggle.btn,
+.footer-help-button.btn,
+.footer-github.btn {
   min-height: 1.85rem;
   box-shadow: none;
 }
@@ -123,9 +162,8 @@ a {
 .timezone-button.btn,
 .meta-row {
   min-height: 32px;
-  border: 1px solid
-    color-mix(in oklab, var(--color-base-content) 9%, transparent);
-  background: color-mix(in oklab, var(--color-base-100) 96%, white);
+  border: 1px solid var(--ui-control-border);
+  background: var(--ui-control-bg);
 }
 
 .notification-toggle {
@@ -154,20 +192,19 @@ a {
   color: var(--color-warning);
 }
 
-.hero-help-menu,
-.notification-config-menu {
+.notification-config-menu,
+.footer-help-menu {
   position: absolute;
   z-index: 20;
   min-width: 280px;
   padding: 10px;
-  border: 1px solid
-    color-mix(in oklab, var(--color-base-content) 10%, transparent);
-  background: color-mix(in oklab, var(--color-base-100) 96%, white);
+  border: 1px solid var(--ui-panel-border);
+  background: var(--ui-control-bg);
 }
 
-.hero-help-menu {
+.footer-help-menu {
   top: calc(100% + 8px);
-  left: 0;
+  right: 0;
 }
 
 .notification-config-menu {
@@ -242,7 +279,7 @@ a {
 }
 
 .notification-status.is-unknown {
-  color: color-mix(in oklab, var(--color-base-content) 55%, transparent);
+  color: var(--ui-text-soft);
 }
 
 .timezone-toggle {
@@ -250,10 +287,9 @@ a {
   align-items: center;
   gap: 0;
   padding: 3px;
-  border: 1px solid
-    color-mix(in oklab, var(--color-base-content) 9%, transparent);
+  border: 1px solid var(--ui-control-border);
   border-radius: 999px;
-  background: color-mix(in oklab, var(--color-base-100) 96%, white);
+  background: var(--ui-control-bg);
 }
 
 .timezone-button.btn {
@@ -285,40 +321,48 @@ a {
 
 .meta-row {
   margin: 0;
-  display: inline-flex;
+  display: inline-grid;
+  grid-template-columns: auto 16ch 3ch;
   align-items: center;
-  justify-content: center;
+  column-gap: 0.5ch;
   padding: 0 9px;
-  min-width: 196px;
-  color: color-mix(in oklab, var(--color-base-content) 65%, transparent);
+  min-width: 228px;
+  color: var(--ui-text-muted);
   font-size: 0.8rem;
   font-weight: 600;
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
 }
 
+.meta-row-label {
+  color: var(--ui-text-muted);
+}
+
+.meta-row-timestamp,
+.meta-row-timezone {
+  font-family: ui-monospace, "SFMono-Regular", "Cascadia Code", monospace;
+}
+
+.meta-row-timezone {
+  width: 3ch;
+  text-align: left;
+}
+
+.footer-help-button.btn,
+.footer-github.btn {
+  color: var(--ui-text-faint);
+}
+
+.footer-help-button.btn .material-symbols-outlined {
+  font-size: 1rem;
+}
+
 .board-shell {
   margin-top: 10px;
   padding: 12px;
-  border: 1px solid
-    color-mix(in oklab, var(--color-base-content) 8%, transparent);
-  background: color-mix(in oklab, var(--color-base-100) 96%, white);
-}
-
-.board-toolbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  padding-bottom: 8px;
-}
-
-.board-title {
-  color: color-mix(in oklab, var(--color-base-content) 62%, transparent);
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+  border-radius: 0;
+  border: 1px solid var(--ui-panel-border-soft);
+  background: var(--ui-control-bg);
 }
 
 .meta-error {
@@ -420,12 +464,7 @@ a {
 .status-card:focus-within,
 .status-card[open] {
   transform: translateY(-1px);
-  box-shadow: 0 6px 14px
-    color-mix(
-      in oklab,
-      var(--tone-color, var(--color-neutral)) 12%,
-      transparent
-    );
+  box-shadow: var(--ui-shadow-hover);
 }
 
 .status-card[data-tone="green"] {
@@ -460,9 +499,8 @@ a {
   gap: 14px;
   min-height: 0;
   padding: 10px 14px 12px;
-  border-top: 1px solid
-    color-mix(in oklab, var(--color-base-content) 8%, transparent);
-  background: color-mix(in oklab, var(--color-base-200) 75%, white);
+  border-top: 1px solid var(--ui-panel-border-soft);
+  background: var(--ui-card-bg);
 }
 
 .brand-mark {
@@ -480,6 +518,12 @@ a {
   max-width: 100%;
   object-fit: contain;
   object-position: left center;
+}
+
+.footer-github.btn img {
+  width: 14px;
+  height: 14px;
+  opacity: 0.55;
 }
 
 .brand-fallback {
@@ -531,7 +575,7 @@ a {
 }
 
 .status-meta dt {
-  color: color-mix(in oklab, var(--color-base-content) 55%, transparent);
+  color: var(--ui-text-soft);
   font-size: 0.76rem;
   font-weight: 700;
 }
@@ -583,25 +627,28 @@ a {
 
 @media (max-width: 720px) {
   .page-shell {
-    width: min(100vw - 20px, 1100px);
+    width: 100%;
     padding: 0 0 28px;
   }
 
   .hero-row {
-    grid-template-columns: 1fr;
+    flex-direction: column;
+    align-items: start;
   }
 
   .hero-actions {
+    margin-left: 0;
     justify-content: flex-start;
     align-items: stretch;
   }
 
   .meta-row {
     min-width: 0;
+    grid-template-columns: auto 1fr 3ch;
   }
 
   .notification-config-menu,
-  .hero-help-menu {
+  .footer-help-menu {
     min-width: min(320px, calc(100vw - 36px));
   }
 
