@@ -1,0 +1,6 @@
+dist
+.devbox
+.vite
+node_modules
+coverage
+public/status.json
