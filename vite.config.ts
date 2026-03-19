@@ -1,5 +1,6 @@
 import vue from 'npm:@vitejs/plugin-vue@^6.0.1';
 import { defineConfig } from 'npm:vite@^7.1.5';
+import tailwindcss from '@tailwindcss/vite';
 
 const repositoryName = Deno.env.get('GITHUB_REPOSITORY')?.split('/')[1];
 const base =
@@ -9,7 +10,7 @@ const base =
 
 export default defineConfig({
   base,
-  plugins: [vue()],
+  plugins: [tailwindcss(), vue()],
   server: {
     port: 5173,
     proxy: {

@@ -1,0 +1,35 @@
+[data-theme="service-status"] {
+  color-scheme: light;
+
+  --color-base-100: oklch(98% 0.01 95);
+  --color-base-200: oklch(95% 0.015 95);
+  --color-base-300: oklch(89% 0.02 95);
+  --color-base-content: oklch(28% 0.025 240);
+
+  --color-primary: oklch(57% 0.13 154);
+  --color-primary-content: oklch(98% 0.01 95);
+  --color-secondary: oklch(62% 0.08 225);
+  --color-secondary-content: oklch(98% 0.01 95);
+  --color-accent: oklch(71% 0.11 82);
+  --color-accent-content: oklch(20% 0.02 80);
+  --color-neutral: oklch(36% 0.03 240);
+  --color-neutral-content: oklch(96% 0.01 95);
+
+  --color-info: oklch(67% 0.1 230);
+  --color-info-content: oklch(98% 0.01 95);
+  --color-success: oklch(66% 0.14 150);
+  --color-success-content: oklch(98% 0.01 95);
+  --color-warning: oklch(76% 0.15 80);
+  --color-warning-content: oklch(25% 0.03 80);
+  --color-error: oklch(63% 0.2 28);
+  --color-error-content: oklch(98% 0.01 95);
+
+  --radius-selector: 0.5rem;
+  --radius-field: 0.5rem;
+  --radius-box: 0.6rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 0;
+  --noise: 0;
+}

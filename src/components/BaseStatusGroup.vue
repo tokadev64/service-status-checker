@@ -7,7 +7,7 @@ defineProps<{
 </script>
 
 <template>
-  <section class="status-group-card" :data-group-tone="tone">
+  <section class="status-group-card card" :data-group-tone="tone">
     <div class="status-group-header">
       <span class="status-group-icon material-symbols-outlined">
         {{ iconName }}

@@ -16,10 +16,10 @@ const iconName = computed(() => toneIcons[props.service.presentation.tone]);
 
 <template>
   <details
-    class="status-card"
+    class="status-card collapse collapse-arrow border border-base-300 bg-base-100"
     :data-tone="service.presentation.tone"
   >
-    <summary class="status-card-summary">
+    <summary class="status-card-summary collapse-title">
       <div class="brand-mark">
         <img
           v-if="brandAsset"
@@ -33,10 +33,9 @@ const iconName = computed(() => toneIcons[props.service.presentation.tone]);
       <span class="status-icon material-symbols-outlined" :data-tone="service.presentation.tone">
         {{ iconName }}
       </span>
-      <span class="status-expand material-symbols-outlined">expand_more</span>
     </summary>
 
-    <div class="status-card-body">
+    <div class="status-card-body collapse-content">
       <dl class="status-meta">
         <div class="status-meta-row">
           <dt>現在の状態</dt>
@@ -63,7 +62,7 @@ const iconName = computed(() => toneIcons[props.service.presentation.tone]);
             <span
               v-for="region in service.regions"
               :key="region"
-              class="status-region-chip"
+              class="status-region-chip badge badge-soft"
             >
               {{ region }}
             </span>
@@ -72,7 +71,7 @@ const iconName = computed(() => toneIcons[props.service.presentation.tone]);
       </dl>
 
       <a
-        class="status-link"
+        class="status-link btn btn-sm btn-outline"
         :href="service.statusUrl"
         target="_blank"
         rel="noreferrer"
