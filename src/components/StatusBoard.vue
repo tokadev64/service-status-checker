@@ -95,11 +95,7 @@ const successCategoryGroups = computed<
 </script>
 
 <template>
-  <section class="board-shell">
-    <div class="board-toolbar">
-      <span class="board-title">Official Service Status</span>
-    </div>
-
+  <section class="board-shell card">
     <div class="status-groups">
       <AlertStatusGroup
         v-if="alertCategoryGroups.length > 0"

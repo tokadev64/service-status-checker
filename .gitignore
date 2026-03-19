@@ -4,3 +4,5 @@ dist
 node_modules
 coverage
 public/status.json
+MEMORY.md
+tasks/
