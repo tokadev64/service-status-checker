@@ -1,0 +1,10 @@
+{
+  "packages": ["deno@latest"],
+  "shell": {
+    "init_hook": ["echo service-status-checker dev shell"],
+    "scripts": {
+      "dev": ["deno task dev"],
+      "check": ["deno task check"]
+    }
+  }
+}
